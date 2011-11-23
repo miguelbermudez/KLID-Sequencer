@@ -1,0 +1,17 @@
+section#info.debug
+	h2 Number of connected users: 
+	a#status status
+	a#sendnote1 send note.1
+	a#sendnote2 send note.2
+	a#panic panic
+
+
+div#main
+	h1= title 
+		<span> sequencer</span>
+	p Welcome to #{title}
+	p 
+		label(for="steps") steps
+		input#amount(type="text")
+	#slider
+		

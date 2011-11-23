@@ -1,0 +1,44 @@
+!!! 5
+html
+  head
+    meta(name='charset', content='utf-8')
+    title= title
+
+    meta(name='description', content='KLID is a euclidean polyrhythmic collborative sequencer')
+    meta(name='author', content='Miguel Bermudez')
+    meta(name='HandheldFriendly', content='True')
+    meta(name='MobileOptimized', content='320')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    
+    <!-- For iPhone 4 with high-resolution Retina display: -->
+    link(rel='apple-touch-icon-precomposed', sizes='114x114', href="images/h/apple-touch-icon.png")
+    <!-- For first-generation iPad: -->
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href="images/m/apple-touch-icon.png")
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href="images/l/apple-touch-icon.png")    
+    <!-- For nokia devices: -->
+    link(rel='apple-touch-icon-precomposed', href="images/l/apple-touch-icon.png")
+    <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+    meta(http-equiv='cleartype', content='on')
+
+
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css')
+
+    script(type="text/javascript", src="http://use.typekit.com/uzf3qwz.js")
+    script
+        try{Typekit.load();}catch(e){}
+    script(src='/javascripts/libs/modernizr-custom.js')
+
+  body!= body
+
+
+  script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js')
+  script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js')
+  script(type='text/javascript', src='/javascripts/mylibs/jquery.ui.mouse.touch.js')
+  
+  script(type='text/javascript', src='/socket.io/socket.io.js')
+  script(type='text/javascript', src='/javascripts/mylibs/helper.js')
+  script(type='text/javascript', src='/javascripts/init.js')
+  script
+    MBP.scaleFix();
