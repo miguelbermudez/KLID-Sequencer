@@ -212,6 +212,7 @@ td { vertical-align: top; }
    Author: Miguel Bermudez
    ========================================================================== */
 
+html, body { width: 100%;}
 body {
     background: rgb(31,31,31);
     color: rgb(204,249,231);
@@ -219,6 +220,8 @@ body {
     font-style: normal;
     font-size: 16px;
     line-height: 1.25;
+    overflow: hidden;
+    width: 320px;
     }
 
 h1 {
@@ -238,6 +241,20 @@ p {
 label {
     margin-right: 5px;
     }
+    
+#container {
+    display: block;
+    width: 320px;
+    }
+
+    #container header {
+        background: #3d3f48;
+        padding-left: 72px;
+        }
+    #container h1 {
+        margin: 0;
+        padding: 10px 0;
+        }
 
 #info {
     margin: 5px 0 0 20px;
@@ -256,26 +273,29 @@ label {
 
 
 #main {
-    height: 40em;
+    height: 297px;
     margin: 0 auto;
-    padding-left: 3em;
     width: 100%;
     }
-    #main h1 {
-        
-        }
     #main p {
-        
         }
 
 #slider {
-    height: 30%;    
+    height: 70%;    
     }
 #amount {
     background: rgb(31,31,31);
     border: 0;
     color: rgb(249, 19, 100);
     font-weight: bold;
+    width: 30px;
+    }
+
+#pattern {
+    border-top: 1px solid #13f99c;
+    border-bottom: 1px solid #13f99c;
+    height:  181px;
+    width: 318px;
     }
 
 .debug {

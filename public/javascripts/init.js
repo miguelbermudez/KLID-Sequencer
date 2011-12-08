@@ -1,9 +1,12 @@
 
+
 $(function () {
     var socket = io.connect();
+    var bpm;
 
     socket.on('connect', function() {
         notify("socket: " + this.socket.sessionid + " connected");
+        bpm = getBPMFromServer();
         console.log(socket);
     });
 
@@ -28,6 +31,7 @@ $(function () {
     socket.on('reconnect_failed', function() {
         notify('System Reconnected to server FAILED.');
     });
+    
 
     $('#status').click(function (e) {
         socket.emit('status', '');
@@ -79,7 +83,11 @@ $(function () {
             }
     });
 
+    //label for slider
     $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
+    
+    //pattern Canvas
+    var canvas = $('#pattern');
     
     function notify(msg) {
 
@@ -90,5 +98,9 @@ $(function () {
             .fadeIn(1000)
             .delay(2000)
             .fadeOut(500);
+    }
+    
+    function getBPMFromServer() {
+        
     }
 });
