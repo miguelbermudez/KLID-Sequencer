@@ -39,24 +39,40 @@ var oscServer = new osc.Server(1300, 'localhost');
 var oscClient = new osc.Client('localhost', 12000);
 
 
+// SEQUENCER Config
+//
+/***********************************************************/
+var sequencer = {
+    bpm: 120,
+    maxClients: 10,
+    state: ""
+}
+
+
+
 
 // SOCKET.IO Config
 /***********************************************************/
 var io = sio.listen(app);
 
 io.sockets.on('connection', function (socket) {
-	console.log("a user has connected...");
-	
-	socket.on('user message', function (msg) {
-		socket.broadcast.emit('announcement', "a user has connected");
-	});
+    console.log("a user has connected...");
+    
+    socket.on('user message', function (msg) {
+        socket.broadcast.emit('announcement', "a user has connected");
+    });
 
-	socket.on('status', function() {
-		var currentNumClients = io.sockets.clients().length;
-    console.log("Current # of Clients: " + currentNumClients);
-    socket.broadcast.emit('announcement', currentNumClients);
-    io.sockets.emit('announcement', currentNumClients);
-	});
+    socket.on('status', function() {
+        var currentNumClients = io.sockets.clients().length;
+        console.log("Current # of Clients: " + currentNumClients);
+        socket.broadcast.emit('announcement', currentNumClients);
+        io.sockets.emit('announcement', currentNumClients);
+    });
+    
+    socket.on('bpm', function() {
+        console.log("Request for BPM received!");
+        io.sockets.emit('bpm', sequencer.bpm);
+    });
 
   socket.on('osc', function(msg) {
     console.log("Message type osc from client received...");
