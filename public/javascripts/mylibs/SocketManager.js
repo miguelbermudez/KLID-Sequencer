@@ -7,14 +7,8 @@ var SocketManager = {
     initialize: function() {
         
         bpm = this.getBPMFromServer();
-        //this.createPattern();
         this.setupSocketEvents();
-    },
-    
-    createPattern: function(steps, beats) {
-        this.patternCavnas = $('#pattern');
-        this.patternArray = bjorklund(steps,beats);
-        console.log("PatternArray created: " + this.patternArray);
+        return this;
     },
     
     setupSocketEvents: function() {
@@ -25,18 +19,17 @@ var SocketManager = {
         socket.on('connect', function() {
             console.log("socket.sessionid:" , this.socket.sessionid);
             that.notify("socket: " + this.socket.sessionid + " connected");
-            console.log("socket: ", socket);
         });
         
         socket.on('announcement', function (msg) {
             that.notify("Announcement received...");
-            console.log("msg:", msg);
+            console.log("Announcement msg:", msg);
             $('#info h2').html("Number of connected users: " + msg);
         });
         
         socket.on('bpm', function (msg) {
            console.log("bmp received: ", msg); 
-           
+           that.bpm = msg;
         });
         
         socket.on('disconnect', function() {

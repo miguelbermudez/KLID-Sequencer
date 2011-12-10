@@ -25,22 +25,23 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css')
 
-    script(type="text/javascript", src="http://use.typekit.com/uzf3qwz.js")
-    script
-        try{Typekit.load();}catch(e){}
     script(src='/javascripts/libs/modernizr-custom.js')
 
   body!= body
 
 
-  script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js')
-  script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js')
-  script(type='text/javascript', src='/javascripts/mylibs/jquery.ui.mouse.touch.js')
+  //script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js')
+  script(type='text/javascript', src='/javascripts/libs/jquery-1.7.1.min.js')
+  //script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js')
+  script(type='text/javascript', src='/javascripts/libs/jquery-ui-1.8.16.custom.min.js')
+  script(type='text/javascript', src='/javascripts/libs/jquery.ui.mouse.touch.js')
+  script(type='text/javascript', src='/javascripts/libs/processing-1.3.6.min.js')
   
   script(type='text/javascript', src='/socket.io/socket.io.js')
   script(type='text/javascript', src='/javascripts/mylibs/helper.js')
   script(type='text/javascript', src='/javascripts/mylibs/euclid.js')
   script(type='text/javascript', src='/javascripts/mylibs/SocketManager.js')
+  script(type='text/javascript', src='/javascripts/mylibs/Pattern.js') 
   script(type='text/javascript', src='/javascripts/init.js')
   script
     MBP.hideUrlBar();

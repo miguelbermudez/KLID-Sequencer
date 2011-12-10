@@ -4,13 +4,23 @@
         h1= title 
             <span> sequencer</span>
     div#pattern
-        canvas#pattern
+        canvas#patternCanvas
    
     div#main
-        p 
-            label(for="steps") steps
-            input#amount(type="text")
-        #slider
+        #slider-group 
+            .sliderDiv.clearfix 
+                .labelDiv.clearfix.invisible
+                    label(for="steps") steps
+                    input#amount-steps.amount(type="text")
+                .slider-container-steps.clearfix
+                    #slider-steps.slider
+        
+            .sliderDiv.clearfix
+                .labelDiv.clearfix.invisible
+                    label(for="beats") beats
+                    input#amount-beats.amount(type="text")
+                .slider-container-beats.clearfix
+                    #slider-beats.slider
     section#info.debug
           h2 Number of connected users: 
           a#status status

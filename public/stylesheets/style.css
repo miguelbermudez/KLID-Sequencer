@@ -280,22 +280,71 @@ label {
     #main p {
         }
 
-#slider {
-    height: 70%;    
+#slider-group {
+    display: block;
+    padding-left: 20px;
+    height: 100%;
     }
-#amount {
-    background: rgb(31,31,31);
-    border: 0;
-    color: rgb(249, 19, 100);
-    font-weight: bold;
-    width: 30px;
+.sliderDiv {
+    float: left;
+    margin-top: 10px;
+    text-align: center;
+    width: 50%;
     }
+    .labelDiv{
+        
+        }    
+        .amount {
+            background: rgb(31,31,31);
+            border: 0;
+            color: rgb(249, 19, 100);
+            font-weight: bold;
+            width: 30px;
+            }
+    .slider-container-beats, .slider-container-steps {
+        height: 252px;
+        }   
+        .slider-container-beats {
+            float: left;
+            }
+            .slider-container-beats .ui-slider-handle {
+                background: #f91364 !important;
+                }
+            .slider-container-beats .ui-widget-content {
+                border: 1px solid #f91364 !important;
+                }
+        .slider-container-steps {
+            float: right;
+            margin-right: 6px;
+            }
+            .slider-container-steps .ui-slider-handle {
+                background: #13E9F9 !important;
+                }
+            .slider-container-steps .ui-widget-content {
+                border: 1px solid #13E9F9 !important;
+                }
+        .slider {
+            height: 95% !important;    
+            margin: 20px auto;
+            }
+
+.ui-slider-handle {
+    border: none !important;
+    height: 14px !important;
+    left: 0 !important;
+    width: 50px !important;
+    }
+.ui-slider-vertical {
+    width: 50px !important;
+    }
+.ui-widget-content {
+    background: rgba(31,31,31,0) !important;
+    }
+        
 
 #pattern {
     border-top: 1px solid #13f99c;
     border-bottom: 1px solid #13f99c;
-    height:  181px;
-    width: 318px;
     }
 
 .debug {
