@@ -2,6 +2,7 @@ ArrayList remainders = new ArrayList();
 ArrayList polygonToDraw = new ArrayList();
 
 int radius = 70;
+int patternCounter = 0;
 PVector centerPt;
 float interval = 0;
 
@@ -18,10 +19,41 @@ void setup() {
   pattern.processingInstance = Processing.getInstanceById('patternCanvas');    
 
   drawPattern();
+  noLoop();
 }
 
 void draw() {
+  //tick();
 }
+
+void tick() {
+  
+  //get current index for the euclidean pattern in the gui
+  PVector p = (PVector)polygonToDraw.get(patternCounter);
+  //console.log("\t\t*** patternIndex: ", pattern);               //debugging
+  //console.log("\t\t\t**** patternCounter: ", patternCounter);   //debugging
+  
+  
+  //get previous index for the euclidean pattern in the gui so we can change its color back
+  if (patternCounter == 0) {
+    PVector prev_p = (PVector)polygonToDraw.get(polygonToDraw.size() - 1);
+  } else { 
+    PVector prev_p = (PVector)polygonToDraw.get(patternCounter - 1);
+    }
+  
+  ellipse(p.x, p.y, 6, 6);
+  fill(#ccf9e7)
+  ellipse(prev_p.x, prev_p.y, 6, 6);
+  noStroke();
+  fill(#ff0000);
+  
+  if (patternCounter < pattern.patternArray.length - 1) {
+    patternCounter++;
+  } else {
+    patternCounter = 0;
+  }
+}
+
 
 void drawPattern() {
     background(31, 31, 31);

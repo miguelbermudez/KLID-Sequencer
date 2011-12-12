@@ -21,6 +21,13 @@ var SocketManager = {
             that.notify("socket: " + this.socket.sessionid + " connected");
         });
         
+        socket.on('allstop', function () {
+            that.notify("ALLSTOP received...");
+            console.log("ALLSTOP!");
+            pattern.reset();
+        });
+        
+
         socket.on('announcement', function (msg) {
             that.notify("Announcement received...");
             console.log("Announcement msg:", msg);
@@ -30,6 +37,20 @@ var SocketManager = {
         socket.on('bpm', function (msg) {
            console.log("bmp received: ", msg); 
            that.bpm = msg;
+        });
+        
+        socket.on('clientID', function (msg) {
+           //console.log("clientID received: ", msg); 
+           log("clientID received: ", msg); 
+           pattern.clientID = msg;
+           //pattern.oscAddress = '/klid/pattern_' + pattern.clientID;
+           that.notify("clientID: " + pattern.clientID + " connected");
+        });
+        
+        socket.on('ping', function () {
+           //log("ping received", pattern.oscAddress); 
+           pattern.tick();
+           
         });
         
         socket.on('disconnect', function() {
@@ -48,6 +69,18 @@ var SocketManager = {
             that.notify('System Reconnected to server FAILED.');
         });
     },
+    
+    sendBeat: function() {
+       var oscObj;
+       
+       // 1st send NOTE_OFF
+       oscObj = {oscmessage: {address: pattern.oscAddress, message: [pattern.pitch, pattern.velocity, pattern.NOTE_OFF] }};
+       this.socket.emit('osc', oscObj); 
+       
+       // then send NOTE_ON
+       oscObj = {oscmessage: {address: pattern.oscAddress, message: [pattern.pitch, pattern.velocity, pattern.NOTE_ON] }};
+       this.socket.emit('osc', oscObj);        
+    }, 
     
     notify: function(msg) {
         $('<div></div>')

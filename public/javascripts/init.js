@@ -8,7 +8,17 @@ $(function () {
     window.sm = SocketManager.initialize();
     window.pattern = Pattern.initialize();
     
+    // usage: log('inside coolFunc',this,arguments);
+    // http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
+    window.log = function(){
+      log.history = log.history || [];   // store logs to an array for reference
+      log.history.push(arguments);
+      if(this.console){
+        console.log( Array.prototype.slice.call(arguments) );
+      }
+    };
 
+    //debugging buttons 
     /***********************************************************/
     
     $('#status').click(function (e) {
@@ -18,10 +28,10 @@ $(function () {
     });
 
     $('#sendnote1').click(function (e) {
-        var oscObj = {oscmessage: {address: "/hpm/1/note", message: [60, 127, 0] }};
+        var oscObj = {oscmessage: {address: pattern.oscAddress, message: [60, 127, 0] }};
         sm.socket.emit('osc', oscObj);
 
-        var oscObj = {oscmessage: {address: "/hpm/1/note", message: [60, 127, 1] }};
+        var oscObj = {oscmessage: {address: pattern.oscAddress, message: [60, 127, 1] }};
         console.log("sending: "+ oscObj);
         sm.socket.emit('osc', oscObj);
         
@@ -29,16 +39,18 @@ $(function () {
         return false;
     });
     
-    $('#sendnote2').click(function (e) {
-        var oscObj = {oscmessage: {address: "/hpm/1/note", message: [80, 127, 0] }};
-        sm.socket.emit('osc', oscObj);
-
-        var oscObj = {oscmessage: {address: "/hpm/1/note", message: [80, 127, 1] }};
-        console.log("sending: "+ oscObj);
-        sm.socket.emit('osc', oscObj);
-        sm.notify("Playing note #: "+80);
+    $('#startseq').click(function (e) {
+        console.log("sending action: "+ 'start');
+        sm.socket.emit('action', {todo: 'start'});
         
+        return false;
+    });
     
+    $('#stopseq').click(function (e) {
+        console.log("sending action: "+ 'stop');
+        sm.socket.emit('action', {todo: 'stop'});
+        pattern.reset();
+        
         return false;
     }); 
     
@@ -61,13 +73,13 @@ $(function () {
             orientation: 'vertical',
             slide: function( event, ui ) {
                 $( "#amount-steps" ).val( ui.value );
-            },
-            change: function(event, ui) { 
                 $("#slider-beats").slider("option", "max", ui.value);
                 pattern.steps = ui.value;
                 pattern.reset();
-                pattern.createEuclidPattern();
-                pattern.draw();
+                sm.socket.emit('action', {todo: 'reset'});
+            },
+            change: function(event, ui) { 
+                
             }
                 
     });
@@ -79,16 +91,15 @@ $(function () {
             value: 4,
             orientation: 'vertical',
             slide: function( event, ui ) {
-                // if( ui.value > $("#slider-steps").slider('value') ) {
-                //     return false;
-                // }
                 $( "#amount-beats" ).val( ui.value );
+                pattern.beats = ui.value;
+                sm.socket.emit('action', {todo: 'reset'});
+                pattern.reset();
             },
             change: function(event, ui) { 
-                pattern.beats = ui.value;
-                pattern.reset();
-                pattern.createEuclidPattern();
-                pattern.draw();
+                
+                
+                
             }
     });
 

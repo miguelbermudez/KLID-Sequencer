@@ -9,14 +9,14 @@
     div#main
         #slider-group 
             .sliderDiv.clearfix 
-                .labelDiv.clearfix.invisible
+                .labelDiv.clearfix
                     label(for="steps") steps
                     input#amount-steps.amount(type="text")
                 .slider-container-steps.clearfix
                     #slider-steps.slider
         
             .sliderDiv.clearfix
-                .labelDiv.clearfix.invisible
+                .labelDiv.clearfix
                     label(for="beats") beats
                     input#amount-beats.amount(type="text")
                 .slider-container-beats.clearfix
@@ -25,6 +25,7 @@
           h2 Number of connected users: 
           a#status status
           a#sendnote1 send note.1
-          a#sendnote2 send note.2
+          a#startseq start seq
+          a#stopseq stop seq
           a#panic panic
         

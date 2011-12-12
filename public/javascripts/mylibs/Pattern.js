@@ -1,12 +1,18 @@
 var Pattern = {
-    patternArray: [],
-    processingInstance: '',
-    steps: 16,
     beats: 4,
     canvas: '',
     ctx: '',
-    state: '',
-    timer: '',
+    counter: 0,
+    clientID: 0,
+    oscAddress: '/klid/pattern_0',
+    patternArray: [],
+    pitch: 35,
+    processingInstance: '',
+    steps: 16,
+    velocity: 120,
+    NOTE_ON: 1,
+    NOTE_OFF: 0,
+
     
     initialize: function() {
           
@@ -24,7 +30,7 @@ var Pattern = {
         return this;
     },  
 
-    createEuclidPattern: function(steps, beats) {
+    createEuclidPattern: function() {
         this.patternArray = bjorklund(this.steps, this.beats);
         //console.log("PatternArray created: " + this.patternArray);  //debugging
     },
@@ -33,8 +39,34 @@ var Pattern = {
         this.processingInstance.drawPattern();
     },
     
+    tick: function() {
+        var patternIndexValue = this.patternArray[this.counter]; //this should be 1 or 0
+        //console.log("#" + this.counter + "  -- patternIndexValue: ", patternIndexValue); //debugging
+        
+        if (patternIndexValue == 1) {
+            sm.sendBeat();
+        }
+        if (this.counter < this.patternArray.length - 1) {
+            this.counter++;
+        } else {
+            this.counter = 0;
+        }
+        this.processingInstance.tick();
+        //return this.counter;
+    },
+    
     reset: function() {
-        this.processingInstance.resetPattern();  
+        //reset data inside of sketch
+        this.processingInstance.resetPattern();
+        //reset counter used to loop through pattern array
+        this.counter = 0;  
+        //create new euclid pattern
+        this.createEuclidPattern();
+        //draw the pattern gui
+        this.draw();
+        
+        
+        console.log("Pattern Reset!");
     },
     
     inspect: function() {
