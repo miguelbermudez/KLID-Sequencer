@@ -6,10 +6,10 @@ var Pattern = {
     clientID: 0,
     oscAddress: '/klid/pattern_0',
     patternArray: [],
-    pitch: 35,
+    pitch: 36,
     processingInstance: '',
     steps: 16,
-    velocity: 120,
+    velocity: 90,
     NOTE_ON: 1,
     NOTE_OFF: 0,
 
@@ -65,8 +65,7 @@ var Pattern = {
         //draw the pattern gui
         this.draw();
         
-        
-        console.log("Pattern Reset!");
+        //console.log("Pattern Reset!");  //debugging
     },
     
     inspect: function() {

@@ -90,7 +90,7 @@ io.sockets.on('connection', function(socket) {
     });
     
     socket.on('action', function(data) {
-        console.log("action received: ", data.todo);
+        //console.log("action received: ", data.todo);  //debugging
         switch (data.todo) {
             case 'stop':
                 app.sequencer.stop();
@@ -120,10 +120,11 @@ var Sequencer = {
         
     initialize: function() {
 
-        this.bpm           = 120,
-        this.maxClients    = 20,
-        this.isPlaying     = false,
+        this.bpm           = 120;
+        this.maxClients    = 20;
+        this.isPlaying     = false;
         this.pulseInterval = 60000 / this.bpm / 4;
+        this.timer;
         
         return this;
     },
@@ -131,35 +132,38 @@ var Sequencer = {
     start: function() {
         if (this.isPlaying === false) {
             console.log("Starting timer now...");
+            this.isPlaying = true;
             //start sequencer
-            this.isPlaying = setInterval( this.pulse, this.pulseInterval);
+            this.timer = setInterval( this.pulse, this.pulseInterval);
+            
         }
     },
     
     stop: function() {
-        console.log("Stopping timer now...");
-        clearInterval(this.isPlaying);
-        this.isPlaying = false;
-        
-        //send stop message to all connected clients
-        io.sockets.emit('allstop');
-        
+        if (this.isPlaying === true) {
+            console.log("Stopping timer now...");
+            clearInterval(this.timer);
+            this.isPlaying = false;
+
+            //send stop message to all connected clients
+            io.sockets.emit('allstop');            
+        }
     },
     
     reset: function() {
-        console.log("resting timer now...");
-        clearInterval(this.isPlaying);
-        this.isPlaying = setInterval( this.pulse, this.pulseInterval);
+        if (this.isPlaying === true)  {
+            console.log("resting timer now...");
+            clearInterval(this.timer);
+            this.timer = setInterval( this.pulse, this.pulseInterval);    
+        }
     },
 
     pulse: function() {
-        if (this.isPlaying !== false) {       
-            //ping all connected clients
-            //console.log("ping"); //debugging
-            io.sockets.emit('ping');            
-            
-            //anything else we want to do here?
-        }
+        //ping all connected clients
+        //console.log("ping"); //debugging
+        io.sockets.emit('ping');            
+        
+        //anything else we want to do here?
     }    
 };
 

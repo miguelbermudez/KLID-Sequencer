@@ -131,6 +131,7 @@ void drawPolygon(int sides, int size) {
 }
 
 void resetPattern() {
-    remainders.clear();
-    polygonToDraw.clear();
+  patternCounter = 0;
+  remainders.clear();
+  polygonToDraw.clear();
 }

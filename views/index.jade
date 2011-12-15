@@ -21,8 +21,23 @@
                     input#amount-beats.amount(type="text")
                 .slider-container-beats.clearfix
                     #slider-beats.slider
+            
+            .sliderDiv.clearfix 
+                .labelDiv.clearfix
+                    label(for="note") note
+                    input#amount-note.amount(type="text")
+                .slider-container-note.clearfix
+                    #slider-note.slider
+                    
+        .sliderHorizonalDiv.clearfix 
+            .slider-container-velocity.clearfix
+                #slider-velocity.slider
+            .labelDiv.clearfix
+                label(for="velocity") velocity
+                input#amount-velocity.amount(type="text")
+            
     section#info.debug
-          h2 Number of connected users: 
+          h2 Users  
           a#status status
           a#sendnote1 send note.1
           a#startseq start seq

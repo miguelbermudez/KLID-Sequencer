@@ -257,8 +257,12 @@ label {
         }
 
 #info {
-    margin: 5px 0 0 20px;
+    margin: 20px 0 0 20px;
     }
+    #info h2 {
+        font-size: 20px;
+        text-align: center;
+        }
     #info a {
         display: block;
         color: rgb(19,233,249);
@@ -273,9 +277,9 @@ label {
 
 
 #main {
-    height: 297px;
-    margin: 0 auto;
-    width: 100%;
+    display: block;
+/*    margin: 0 auto;*/
+/*    width: 100%;*/
     }
     #main p {
         }
@@ -283,29 +287,53 @@ label {
 #slider-group {
     display: block;
     padding-left: 20px;
-    height: 100%;
+    height: 325px;
     }
+.sliderHorizonalDiv {
+    width: 100%;
+    }
+    .sliderHorizonalDiv .labelDiv label {
+        margin: 0 0 0 18px;
+        }
+    .sliderHorizonalDiv #amount-velocity {
+        margin: 0 0 10px 15px;
+        }
+    .slider-container-velocity {
+        margin: 0 auto;
+        width: 90%;
+        }
 .sliderDiv {
     float: left;
     margin-top: 10px;
     text-align: center;
-    width: 50%;
+    width: 33%;
     }
+    
     .labelDiv{
         
         }    
+        .labelDiv label {
+            display: block;
+            margin: 0 auto;
+            width: 60px !important;
+            }
         .amount {
             background: rgb(31,31,31);
             border: 0;
+            display: block;
             color: rgb(249, 19, 100);
             font-weight: bold;
+            margin: 0 auto;
             width: 30px;
             }
-    .slider-container-beats, .slider-container-steps {
+        #amount-note.amount {
+            width: 56px;
+            }
+    .slider-container-beats, .slider-container-steps, .slider-container-note {
         height: 252px;
         }   
         .slider-container-beats {
-            float: left;
+            margin: 0 auto;
             }
             .slider-container-beats .ui-slider-handle {
                 background: #f91364 !important;
@@ -314,8 +342,7 @@ label {
                 border: 1px solid #f91364 !important;
                 }
         .slider-container-steps {
-            float: right;
-            margin-right: 6px;
+            margin: 0 auto;
             }
             .slider-container-steps .ui-slider-handle {
                 background: #13E9F9 !important;
@@ -323,19 +350,48 @@ label {
             .slider-container-steps .ui-widget-content {
                 border: 1px solid #13E9F9 !important;
                 }
+        .slider-container-note {
+            margin: 0 auto;
+            }
+            .slider-container-note .ui-slider-handle {
+                 background: #13f99c !important;
+                }
+            .slider-container-note .ui-widget-content {
+                border: 1px solid #13f99c !important;
+                }
+        .slider-container-velocity {
+            margin: 0 auto;
+            }
+            .slider-container-velocity .ui-slider-handle {
+                 background: #f5f931 !important;
+                 border: 1px solid #f5f931 !important;
+                }
+            .slider-container-velocity .ui-widget-content {
+                border: 1px solid #f5f931 !important;
+                }
         .slider {
             height: 95% !important;    
-            margin: 20px auto;
+            margin: 10px auto;
             }
 
-.ui-slider-handle {
+.ui-slider-vertical .ui-slider-handle {
     border: none !important;
-    height: 14px !important;
+    height: 20px !important;
     left: 0 !important;
     width: 50px !important;
     }
+
+.ui-slider-horizontal .ui-slider-handle {
+    height: 50px !important;
+    width: 20px !important;
+    top: -1px !important;
+    }
+    
 .ui-slider-vertical {
     width: 50px !important;
+    }
+.ui-slider-horizontal {
+    height: 50px !important;
     }
 .ui-widget-content {
     background: rgba(31,31,31,0) !important;
@@ -351,8 +407,10 @@ label {
     font-size: 8px;
     font-style: normal;
     font-weight: 100;
-    font-family: monospace;
+/*    font-family: monospace;*/
     color: rgb(249,92,98);
+    height: 200px;
+    overflow: hidden;
     }
 
 

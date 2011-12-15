@@ -2,8 +2,8 @@ function bjorklund(steps, pulses) {
   var steps = parseInt(steps);
   var pulses = parseInt(pulses);
 
-  if (pulses > steps) 
-    throw "Steps must be greater than Beats.";
+  //if (pulses > steps) 
+    //throw "Steps must be greater than Beats.";
 
   var pattern = [];
   var counts = [];

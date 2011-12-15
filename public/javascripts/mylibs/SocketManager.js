@@ -31,7 +31,7 @@ var SocketManager = {
         socket.on('announcement', function (msg) {
             that.notify("Announcement received...");
             console.log("Announcement msg:", msg);
-            $('#info h2').html("Number of connected users: " + msg);
+            $('#info h2').html("Users " + msg);
         });
         
         socket.on('bpm', function (msg) {
@@ -89,7 +89,10 @@ var SocketManager = {
             .appendTo('#info')
             .fadeIn(1000)
             .delay(2000)
-            .fadeOut(500);
+            .fadeOut(500, function() {
+                $('.notification').remove();                
+            });
+            
     },
     
     getBPMFromServer: function() {
